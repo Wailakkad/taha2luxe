@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { 
-  Instagram, 
-  Menu, 
-  X, 
-  ArrowRight, 
-  Phone, 
-  MapPin, 
+import {
+  Instagram,
+  Menu,
+  X,
+  ArrowRight,
+  Phone,
+  MapPin,
   MessageCircle,
   ChevronRight,
   ExternalLink,
@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-[100] transition-all duration-700 ${scrolled ? 'glass py-4 shadow-2xl border-b border-white/5' : 'bg-transparent py-8'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-4 group cursor-pointer"
@@ -70,16 +70,16 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-10 items-center">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
               className="relative text-[11px] uppercase tracking-[0.25em] font-medium text-gray-300 hover:text-[#D4AF37] transition-colors group"
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <motion.a 
+          <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="https://wa.me/212606000495"
@@ -99,7 +99,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -107,16 +107,16 @@ const Navbar = () => {
           >
             <div className="flex flex-col p-8 gap-8">
               {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
+                <a
+                  key={link.name}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="text-sm uppercase tracking-[0.3em] font-medium text-white hover:text-[#D4AF37] transition-all"
                 >
                   {link.name}
                 </a>
               ))}
-              <a 
+              <a
                 href="https://wa.me/212606000495"
                 className="bg-[#D4AF37] text-black px-6 py-4 rounded-xl text-center font-bold uppercase tracking-widest"
               >
@@ -141,17 +141,27 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={targetRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Merged multiple style attributes into one to avoid JSX parsing error */}
-      <motion.div 
-        style={{ y, backgroundImage: `url('https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80&w=1920')` }}
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#050505] z-1" />
-      
-      <motion.div 
+    <section ref={targetRef} className="relative h-screen flex items-center justify-start overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/vedios/herovediobackground.mp4" type="video/mp4" />
+        </video>
+        {/* Horizontal Gradient to improve text visibility on the left while keeping the video clear on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-[1]" />
+        {/* Subtle bottom gradient for smooth transition */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-[1]" />
+      </div>
+
+      <motion.div
         style={{ opacity }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        className="relative z-10 text-left px-6 md:px-20 max-w-4xl"
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -161,22 +171,22 @@ const Hero = () => {
           <span className="inline-block px-4 py-1 border border-[#D4AF37]/30 rounded-full text-[#D4AF37] uppercase tracking-[0.6em] text-[10px] font-bold mb-8 backdrop-blur-sm">
             Excellence & Héritage
           </span>
-          <h1 className="text-6xl md:text-9xl font-serif mb-10 leading-[0.9] tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-serif mb-10 leading-[0.9] tracking-tight">
             L'Art du <br /> <span className="text-[#D4AF37] italic">Temps.</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
+          <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-xl font-light leading-relaxed tracking-wide">
             Sublimez votre quotidien avec une sélection rigoureuse de pièces horlogères et de maroquinerie d'exception.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <motion.a 
+          <div className="flex flex-col sm:flex-row gap-6 justify-start items-center">
+            <motion.a
               whileHover={{ y: -5 }}
-              href="#collection" 
+              href="#collection"
               className="group bg-white text-black px-12 py-5 rounded-full font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-[#D4AF37] hover:text-white transition-all duration-500 flex items-center gap-4 w-full sm:w-auto justify-center"
             >
               La Collection
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
             </motion.a>
-            <motion.a 
+            <motion.a
               whileHover={{ y: -5 }}
               href="https://wa.me/212606000495"
               className="text-white border border-white/20 backdrop-blur-sm px-12 py-5 rounded-full font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-white/10 transition-all w-full sm:w-auto text-center"
@@ -187,10 +197,7 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-4 opacity-50">
-        <span className="text-[10px] uppercase tracking-[0.4em] font-medium">Découvrir</span>
-        <div className="w-[1px] h-16 bg-gradient-to-b from-[#D4AF37] to-transparent animate-pulse" />
-      </div>
+
     </section>
   );
 };
@@ -209,7 +216,7 @@ const ServicesSection = () => {
             Chaque univers est le reflet d'une quête insatiable de perfection et de raffinement.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {SERVICES.map((service, index) => (
             <motion.div
@@ -218,19 +225,19 @@ const ServicesSection = () => {
               transition={{ delay: index * 0.15 }}
               className="group relative h-[600px] rounded-[32px] overflow-hidden bg-[#0a0a0a]"
             >
-              <div 
+              <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 opacity-40"
                 style={{ backgroundImage: `url(${service.image})` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-              
+
               <div className="absolute inset-0 p-10 flex flex-col justify-end">
                 <div className="mb-auto">
                   <div className="w-14 h-14 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center text-[#D4AF37] border border-white/10 group-hover:bg-[#D4AF37] group-hover:text-black transition-all duration-500">
                     {service.icon}
                   </div>
                 </div>
-                
+
                 <h3 className="text-3xl font-serif mb-6 group-hover:translate-x-2 transition-transform duration-500">{service.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-10 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700">
                   {service.description}
@@ -260,7 +267,7 @@ const CollectionSection = () => {
             </div>
             <h2 className="text-5xl md:text-7xl font-serif leading-tight">La Sélection <br /> du Moment</h2>
           </div>
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.02 }}
             className="text-black border-2 border-black/10 px-10 py-4 rounded-full uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-black hover:text-white transition-all flex items-center gap-3"
           >
@@ -270,7 +277,7 @@ const CollectionSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
           {PRODUCTS.map((product, idx) => (
-            <motion.div 
+            <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -279,12 +286,12 @@ const CollectionSection = () => {
               className="group"
             >
               <div className="relative aspect-[3/4] overflow-hidden rounded-[32px] bg-[#f9f9f9] mb-8 shadow-sm">
-                <img 
-                  src={product.image} 
+                <img
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                
+
                 <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-black">
                     <ShoppingBag size={18} />
@@ -322,24 +329,24 @@ const AboutSection = () => {
     <section id="about" className="py-40 px-6 bg-[#050505]">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-32 items-center">
         <div className="relative">
-          <motion.div 
+          <motion.div
             {...fadeUp}
             className="z-10 relative rounded-[40px] overflow-hidden"
           >
             <div className="absolute inset-0 bg-[#D4AF37]/10 z-10 mix-blend-overlay"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=1000" 
-              alt="Artisan detail" 
-              className="w-full grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+            <img
+              src="/images/ownerimage.png"
+              alt="Maison Taha2Luxe Owner"
+              className="w-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
             />
           </motion.div>
-          
+
           <div className="absolute -top-10 -left-10 w-40 h-40 border-l-2 border-t-2 border-[#D4AF37]/20 rounded-tl-[40px] -z-1" />
           <div className="absolute -bottom-10 -right-10 w-64 h-64 border-r-2 border-b-2 border-[#D4AF37]/20 rounded-br-[40px] -z-1" />
-          
+
           <div className="absolute bottom-10 -left-20 bg-white p-8 rounded-3xl shadow-2xl hidden xl:block z-20 max-w-[200px]">
             <div className="flex gap-1 mb-3">
-              {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="#D4AF37" color="#D4AF37" />)}
+              {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="#D4AF37" color="#D4AF37" />)}
             </div>
             <p className="text-black text-xs font-bold leading-tight">"La référence incontournable de l'élégance à Oujda."</p>
           </div>
@@ -351,10 +358,10 @@ const AboutSection = () => {
           <p className="text-gray-400 text-lg mb-12 leading-relaxed font-light tracking-wide">
             Depuis notre atelier à Oujda, nous parcourons le monde pour dénicher des pièces qui racontent une histoire. Taha2Luxe n'est pas qu'une vitrine, c'est un engagement : celui de vous offrir le prestige sans l'arrogance.
           </p>
-          
+
           <div className="grid gap-8">
             {WHY_US.map((item, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ x: 10 }}
                 className="flex items-start gap-8 group"
@@ -379,7 +386,7 @@ const TestimonialsSection = () => {
   return (
     <section className="py-32 px-6 bg-[#0a0a0a] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[120px] -mr-64 -mt-64"></div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-center text-center mb-24">
           <span className="text-[#D4AF37] uppercase tracking-[0.5em] text-[10px] font-bold mb-4">Avis Clients</span>
@@ -389,7 +396,7 @@ const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-10">
           {TESTIMONIALS.map((t, idx) => (
-            <motion.div 
+            <motion.div
               key={t.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -468,7 +475,7 @@ const ContactSection = () => {
               <div className="relative">
                 <textarea rows={3} className="w-full bg-transparent border-b-2 border-black/10 py-4 focus:border-[#D4AF37] outline-none transition-all resize-none placeholder:text-gray-300 font-medium text-lg" placeholder="Dites-nous quel modèle vous fait rêver..." />
               </div>
-              <motion.button 
+              <motion.button
                 whileHover={{ y: -5 }}
                 className="w-full bg-black text-white py-6 rounded-full font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-[#D4AF37] transition-all flex items-center justify-center gap-4 shadow-xl"
               >
@@ -545,9 +552,9 @@ export default function App() {
       <TestimonialsSection />
       <ContactSection />
       <Footer />
-      
+
       {/* Premium WhatsApp Button */}
-      <motion.a 
+      <motion.a
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.1, rotate: 5 }}

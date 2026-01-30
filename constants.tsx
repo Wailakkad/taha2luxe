@@ -30,7 +30,7 @@ export const SERVICES: Service[] = [
     title: 'Bijouterie & Accessoires',
     description: 'Bracelets, bagues et accessoires raffinés pour parfaire votre style avec une touche d\'éclat.',
     icon: <Gem className="w-6 h-6" />,
-    image: 'https://images.unsplash.com/photo-1611085583191-a3b130a8b19a?auto=format&fit=crop&q=80&w=800'
+    image: 'https://i.pinimg.com/736x/79/15/80/7915807a233513aa550cff615e5c67a5.jpg'
   }
 ];
 
@@ -38,8 +38,8 @@ export const PRODUCTS: Product[] = [
   { id: 'p1', name: 'Royal Oak Skeleton', category: 'Montres', image: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80&w=500' },
   { id: 'p2', name: 'Card Holder Noir', category: 'Maroquinerie', image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=500' },
   { id: 'p3', name: 'Bracelet Croco Gold', category: 'Accessoires', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=500' },
-  { id: 'p4', name: 'Submariner Date', category: 'Montres', image: 'https://images.unsplash.com/photo-1587836374828-4dbaba94cf0e?auto=format&fit=crop&q=80&w=500' },
-  { id: 'p5', name: 'Portefeuille Signature', category: 'Maroquinerie', image: 'https://images.unsplash.com/photo-1606503170916-29d29d781989?auto=format&fit=crop&q=80&w=500' },
+  { id: 'p4', name: 'Submariner Date', category: 'Montres', image: 'https://i.pinimg.com/736x/96/63/70/966370bdf9cb5369660a65aa24a3f617.jpg' },
+  { id: 'p5', name: 'Portefeuille Signature', category: 'Maroquinerie', image: 'https://i.pinimg.com/1200x/50/e5/ef/50e5ef3394c1e90a08cbfa09421e433e.jpg' },
   { id: 'p6', name: 'Master Classic', category: 'Montres', image: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=500' },
 ];
 
